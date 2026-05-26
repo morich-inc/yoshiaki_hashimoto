@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>橋本宜明 様｜morich キャリアご提案</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --red: #E60012;
+    --red-light: #fff0f0;
+    --gray-50: #f9fafb;
+    --gray-100: #f3f4f6;
+    --gray-200: #e5e7eb;
+    --gray-500: #6b7280;
+    --gray-600: #4b5563;
+    --gray-700: #374151;
+    --gray-900: #111827;
+    --blue-50: #eff6ff;
+    --blue-100: #dbeafe;
+    --blue-600: #2563eb;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Noto Sans JP', sans-serif; background: #f5f5f5; color: var(--gray-900); line-height: 1.75; }
+  header { background: #fff; border-bottom: 3px solid var(--red); padding: 14px 24px; display: flex; align-items: center; gap: 16px; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 8px rgba(0,0,0,0.07); }
+  header img { height: 38px; }
+  header .htxt p:first-child { font-size: 12px; color: var(--gray-500); }
+  header .htxt p:last-child { font-size: 17px; font-weight: 900; }
+  .nav-bar { background: var(--gray-900); padding: 0 12px; overflow-x: auto; white-space: nowrap; }
+  .nav-bar a { display: inline-block; padding: 13px 18px; color: #ccc; text-decoration: none; font-size: 12px; font-weight: 700; border-bottom: 3px solid transparent; transition: all 0.2s; }
+  .nav-bar a:hover { color: #fff; border-bottom-color: var(--red); }
+  main { max-width: 860px; margin: 0 auto; padding: 28px 14px 64px; }
+  .card { background: #fff; border-radius: 12px; box-shadow: 0 2px 12px rgba(0,0,0,0.07); margin-bottom: 40px; overflow: hidden; border-top: 5px solid var(--red); }
+  .card-inner { padding: 28px 28px 36px; }
+  .badges { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 14px; }
+  .badge { font-size: 11px; font-weight: 700; padding: 3px 12px; border-radius: 999px; border: 2px solid var(--red); color: var(--red); background: var(--red-light); }
+  .badge-blue { border-color: var(--blue-600); color: var(--blue-600); background: var(--blue-50); }
+  .co-name { font-size: clamp(22px, 5vw, 34px); font-weight: 900; line-height: 1.2; margin-bottom: 5px; }
+  .co-url { font-size: 12px; margin-bottom: 22px; }
+  .co-url a { color: var(--blue-600); text-decoration: none; }
+  .co-url a:hover { text-decoration: underline; }
+  .overview { background: var(--blue-50); border: 1px solid var(--blue-100); border-radius: 8px; padding: 16px 20px; margin-bottom: 22px; }
+  .overview h3 { font-size: 10px; font-weight: 700; color: var(--blue-600); text-transform: uppercase; letter-spacing: .1em; margin-bottom: 10px; }
+  .overview table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  .overview tr { border-bottom: 1px solid var(--blue-100); }
+  .overview tr:last-child { border-bottom: none; }
+  .overview th { text-align: left; padding: 6px 14px 6px 0; color: var(--gray-600); font-weight: 700; width: 100px; vertical-align: top; white-space: nowrap; }
+  .overview td { padding: 6px 0; color: var(--gray-700); }
+  .highlight { background: var(--red-light); border: 2px solid var(--red); border-radius: 8px; padding: 16px 20px; margin-bottom: 22px; }
+  .highlight h3 { font-size: 13px; font-weight: 900; color: var(--red); margin-bottom: 8px; }
+  .highlight p, .highlight li { font-size: 13px; color: #7a0000; margin-bottom: 4px; }
+  .highlight ul { padding-left: 16px; }
+  .accordion { margin-bottom: 16px; }
+  .acc-header { display: flex; align-items: flex-start; justify-content: space-between; cursor: pointer; padding: 12px 16px; background: var(--gray-50); border: 1px solid var(--gray-200); border-radius: 8px; user-select: none; transition: background 0.15s; }
+  .acc-header:hover { background: var(--gray-100); }
+  .acc-header .label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--red); border-left: 3px solid var(--red); padding-left: 8px; margin-bottom: 5px; display: block; }
+  .acc-preview { font-size: 12px; color: var(--gray-500); line-height: 1.6; }
+  .acc-header-left { flex: 1; }
+  .acc-icon { width: 28px; height: 28px; flex-shrink: 0; margin-left: 12px; margin-top: 2px; display: flex; align-items: center; justify-content: center; border-radius: 50%; background: var(--gray-200); font-size: 13px; transition: transform 0.25s, background 0.2s; }
+  .acc-header.open .acc-icon { transform: rotate(180deg); background: var(--red); color: #fff; }
+  .acc-header.open { border-bottom-left-radius: 0; border-bottom-right-radius: 0; border-bottom-color: transparent; }
+  .acc-body { display: none; padding: 20px 18px; border: 1px solid var(--gray-200); border-top: none; border-bottom-left-radius: 8px; border-bottom-right-radius: 8px; font-size: 13px; color: var(--gray-700); line-height: 1.85; }
+  .acc-body.open { display: block; }
+  .acc-body p { margin-bottom: 10px; }
+  .acc-body ul { padding-left: 18px; margin-bottom: 10px; }
+  .acc-body li { margin-bottom: 6px; }
+  .job-wrap { border: 1px solid var(--gray-200); border-radius: 8px; overflow: hidden; margin-bottom: 16px; }
+  .job-header { background: var(--gray-900); color: #fff; padding: 14px 18px; display: flex; align-items: flex-start; justify-content: space-between; cursor: pointer; user-select: none; }
+  .job-title-text { font-size: 14px; font-weight: 900; margin-bottom: 3px; }
+  .job-preview { font-size: 11px; color: #aaa; line-height: 1.5; }
+  .job-icon { width: 26px; height: 26px; flex-shrink: 0; margin-left: 12px; margin-top: 2px; display: flex; align-items: center; justify-content: center; border-radius: 50%; background: rgba(255,255,255,0.15); font-size: 12px; transition: transform 0.25s; }
+  .job-header.open .job-icon { transform: rotate(180deg); }
+  .job-body { display: none; padding: 20px 18px; font-size: 13px; color: var(--gray-700); line-height: 1.85; }
+  .job-body.open { display: block; }
+  .job-body p { margin-bottom: 10px; }
+  .job-body ul { padding-left: 18px; margin-bottom: 10px; }
+  .job-body li { margin-bottom: 6px; }
+  .job-section { font-size: 11px; font-weight: 700; color: var(--red); text-transform: uppercase; letter-spacing: .06em; margin: 14px 0 6px; }
+  .tag { display: inline-block; font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 4px; margin-right: 5px; margin-bottom: 8px; }
+  .tag-must { background: var(--red); color: #fff; }
+  .tag-want { background: var(--gray-600); color: #fff; }
+  .meta-pills { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 14px; }
+  .pill { font-size: 12px; font-weight: 700; padding: 4px 11px; border-radius: 999px; background: var(--gray-100); color: var(--gray-700); border: 1px solid var(--gray-200); }
+  .section-label { font-size: 11px; font-weight: 700; color: var(--gray-500); text-transform: uppercase; letter-spacing: .08em; border-left: 3px solid var(--red); padding-left: 8px; margin: 22px 0 10px; }
+  .links { display: flex; flex-wrap: wrap; gap: 8px; }
+  .lbtn { display: inline-flex; align-items: center; gap: 5px; padding: 7px 14px; border-radius: 6px; background: var(--gray-900); color: #fff; font-size: 12px; font-weight: 700; text-decoration: none; transition: background 0.2s; }
+  .lbtn:hover { background: var(--red); }
+  .lbtn-out { background: transparent; color: var(--gray-900); border: 2px solid var(--gray-200); }
+  .lbtn-out:hover { background: var(--gray-900); color: #fff; border-color: var(--gray-900); }
+  footer { text-align: center; padding: 28px 16px; font-size: 11px; color: var(--gray-500); border-top: 1px solid var(--gray-200); background: #fff; }
+  @media(max-width:600px){ .card-inner{ padding: 18px 14px 24px; } .overview th { width: 80px; } }
+</style>
+</head>
+<body>
+<header>
+  <img src="morich_logo.jpg" alt="morich">
+  <div class="htxt">
+    <p>morich キャリアご提案資料</p>
+    <p>橋本宜明 様</p>
+  </div>
+</header>
+<nav class="nav-bar">
+  <a href="#k1">1. エムスリーキャリア株式会社</a>
+  <a href="#k2">2. 株式会社キャンサースキャン</a>
+  <a href="#k3">3. ドクターズ株式会社</a>
+  <a href="#k4">4. カイテク株式会社</a>
+</nav>
+<main>
+
+<div class="card" id="k1"><div class="card-inner">
+  <div class="badges"><span class="badge">事業責任者候補</span><span class="badge badge-blue">未上場</span></div>
+  <div class="co-name">エムスリーキャリア株式会社</div>
+  <div class="co-url"><a href="https://www.m3career.com/corporate-info/#about-4" target="_blank">https://www.m3career.com/corporate-info/#about-4</a></div>
+  <div class="overview">
+    <h3>Corporate Overview</h3>
+    <table><tr><th>本社住所</th><td>〒105-0001　東京都港区虎ノ門4-1-28　虎ノ門タワーズオフィス</td></tr><tr><th>上場区分</th><td>未上場</td></tr><tr><th>IPO予定</th><td>当面予定なし</td></tr></table>
+  </div>
+  <div class="highlight">
+    <h3>⭐ morichオススメPoint</h3>
+    <ul><li>豊富なアセットを活用できる事業開発環境！：エムスリー株式会社（51％）と株式会社エス・エム・エス（49％）による安定したジョイントベンチャーですが、親会社からの過度な干渉はなく自由度の高い環境で任せてもらえます。豊富なアセットを活用して、「材料がいっぱいある中で絵を描く」ことが得意な方にぴったりなフェーズです。</li><li>リアルビジネスへの強み：親会社のエムスリーと比較して、「営業を伴うビジネス」や「人を伴うビジネス」といったリアルビジネスに強みを持っています。プロダクト作りだけでなく、営業組織を牽引できる方は特に活躍できるフィールドです。</li><li>社員の9割以上が異業界出身！若手が躍動する組織！：医療業界や人材業界が未経験の方でも大歓迎です！社員の90%近くが20代・30代で構成されており、「誰が言ったか」ではなく「何を言ったか」を重視するフラットでスピード感のある組織です。ロジカルでありながらも、ノリが良く活気にあふれた風土があります。</li><li>柔軟な働き方を後押し！：週1～3日の在宅勤務（遠隔地でのフルリモート事例あり）や時差出勤、短時間勤務に対応しています。さらに個人の事情やスキルアップ目的での副業も可能です。「健康経営優良法人2026（ホワイト500）」にも2年連続で認定されており、働きやすさも抜群です。</li></ul>
+  </div>
+  <div class="accordion">
+    <div class="acc-header" onclick="toggleAcc(this)">
+      <div class="acc-header-left">
+        <span class="label">企業紹介</span>
+        <div class="acc-preview">2009年の設立以来、「イキイキと働く医療従事者を一人でも増やし、医療に貢献する」というミッションを掲げているエムスリーキャリア。日本の医療インフラが直面する「人材不足・偏在」「過重労働」「医療機関の経営難」といった深刻な課題に対し、100年先の未来を見据えて事業を展開しています。</div>
+      </div>
+      <div class="acc-icon">▼</div>
+    </div>
+    <div class="acc-body"><p>2009年の設立以来、「イキイキと働く医療従事者を一人でも増やし、医療に貢献する」というミッションを掲げているエムスリーキャリア。日本の医療インフラが直面する「人材不足・偏在」「過重労働」「医療機関の経営難」といった深刻な課題に対し、100年先の未来を見据えて事業を展開しています。</p><p>当社の圧倒的な優位性は、日本の医師の約9割にあたる34万人以上の医師が登録する会員データベースを有している点です。この強固なアセットを武器に、医療人材マッチングを核としながら、医療機関の採用・経営コンサルティング、一般企業向けの健康経営支援、さらには医師の働き方改革支援と多彩なソリューションを提供しています。</p><p>実績として、産業医紹介サービスにおいては医師登録実績8年連続No.1を獲得し、訪日外国人向けオンライン診療サービスでは世界43か国の利用実績を突破しています。従業員数も1,101名（2025年10月末時点）へと拡大し、医療人材のリーディングカンパニーとして確かな成長とイノベーションを続けています！</p><p><strong>代表取締役 沼倉 敏樹</strong><br>北海道大樹町生まれ。帯広柏葉高校、中京大学体育学部を卒業後、公立高校の教員、アパレル商社のブランドマネージャーを経て、青山学院大学大学院国際マネジメント研究科（MBA）に入学。大学院修了後にエムスリーキャリアへ入社。現場のコンサルタント、医師キャリア事業部長を経て2021年4月から代表取締役。趣味はスキー。年間滑走日数は30日以上。</p></div>
+  </div>
+  
+    <div class="job-wrap">
+      <div class="job-header" onclick="toggleJob(this)">
+        <div>
+          <div class="job-title-text">📋 事業責任者候補</div>
+          <div class="job-preview">医療×HRTechで世界を変える事業責任者として圧倒的なデータ量を武器に医療課題を解決</div>
+        </div>
+        <div class="job-icon">▼</div>
+      </div>
+      <div class="job-body">
+        <p><strong>《 医療 × HRTech で世界を変える 》</strong></p><p>エムスリーキャリアは、m3.comの会員基盤・オペレーションエクセレンスを強みに創業以来業績を伸ばし、コロナ禍の市場の変化を乗り越え、新たな事業・サービスを次々と生み出してきました。そして、現在はほぼ全てのサービスが業界No.1となっています。今、医療業界は過去にない大きな変革期を迎えています。この掛け算で世界に革新を起こせるのは、唯一エムスリーキャリアだけだと自負しています。</p><p><strong>■「圧倒的No.1の人材サービス × HRTech」の組み合わせでしか医療課題は解決できない</strong><br>ホワイトカラーの採用と異なり、医療人材採用においては信頼できるデータが世の中に出回っておらず、確からしいノウハウやナレッジを知る術もありません。そのため医療機関は、いつ、どのくらいの確率で人材確保できるのか、見通しが立てられないという厳しい状況下にいます。医師・薬剤師の確保 ≒ 収益の確保という構造である医療経営において、&quot;圧倒的なデータ量を根拠にした採用予測に基づき、働き方の多様化に対応できる全方位の採用支援&quot;ができるのは、医療人材で圧倒的No.1、かつその強みを活かしたHRTechの掛け算ができる当社のみだと考えています。</p><p><strong>【募集背景】</strong><br>エムスリーキャリアは、約40のグループで構成されています。各グループにゼネラルマネージャー（部長）、サービス責任者をそれぞれ配置していますが、現状は複数部門を兼任していることも多く、ミッション達成・事業成長のためには組織の中核を担うマネジメント人材がまだまだ必要です。そこで、サービス責任者としての経験知見をお持ちの方にジョインいただき、当社の成長を牽引してもらえることを期待しています。</p><p><strong>【職務内容】</strong><br>入社後の具体的な役割は、経験スキル・適性・事業課題の優先度などを勘案し決定いたします。入社直後は、既存事業におけるサービス企画・業務改善・オペレーション設計などを担当しながら、サービスや組織への理解を深めていただきます。その後、事業責任者として活躍していただくことを期待しています。</p><p><strong>アサイン例：</strong></p><ul><li><strong>既存事業の拡大、派生サービスの開発</strong><br>┗粗利1億円以上、メンバー10名以上の責任者として、担当する事業の拡大をお任せします<br>┗課題整理や改善プロジェクトの推進はもちろん、派生サービスの開発も担当いただきます</li><li><strong>新規事業開発</strong><br>┗市場調査・ビジネスモデル設計・テスト実施と、事業を創ることを担当いただきます<br>┗ゼロベースで事業立ち上げ、小さく立ち上がっているサービスの拡大するなど、様々なフェーズがあります</li></ul><p><strong>【ポジションの魅力】</strong></p><ul><li><strong>事業責任者として、魅力的なチャレンジ機会がたくさん得られる</strong><br>30以上のサービスがあり、新規事業開発にも積極的な社風です。そのため、エムスリーキャリアには「0→1」「1→10」「10→100」すべてのフェーズの事業があり、各事業のビジネスモデルも多岐にわたります。</li><li><strong>マーケットの継続的な成長が期待でき、企業としてもまだまだ発展途上のフェーズ</strong><br>医療・ヘルスケアやITの分野は、今後も継続的な成長が見込める日本では希少なマーケットです。当社は3期連続で過去最高益を更新中の成長フェーズにあり、既存事業から派生させた新規サービス・プロダクトの開発や、まったく新しい事業の柱をつくるための企画・開発のニーズがたくさんあります。</li><li><strong>医療課題の根本解決に貢献できるソリューションを扱える</strong><br>医療業界には解決しなければならない課題が山積しています。なかでも、日本の医療をより良くするためには「人と組織」の課題解決が急務です。医師・薬剤師の確保 ≒ 収益の確保となるため、経営状況が良くなり医療サービスの量・質が担保されるためには、まず何よりも人材確保が大事になってきます。</li></ul><p><strong>【応募資格】</strong><br><span class='tag tag-must'>MUST</span> サービス責任者として、戦略策定/PL管理/営業/組織マネジメントに携わった経験が2年以上ある方<br><span class='tag tag-want'>WANT</span> 定量データの扱いが得意な方、データドリブンでの改善経験がある方<br><span class='tag tag-want'>WANT</span> 論理的思考能力があり、定量・定性の両側面から建設的な思考ができる方<br><span class='tag tag-want'>WANT</span> 事業（サービス）の立ち上げやグロースさせた経験がある方</p><p><strong>【求める人物像】</strong></p><ul><li>当事者意識を持ち、主体的に考え行動できる方</li><li>成長意欲、学習意欲が高い方</li><li>部署の垣根を超えてコミュニケーションをとり、業務を推進できる方</li><li>限られた情報をもとに、自ら一次情報を収集しにいったり組織に入り込んでいける方</li></ul>
+        <div class="meta-pills"><span class="pill">📍 東京</span><span class="pill">🏠 ハイブリッド勤務</span><span class="pill">✅ 副業可</span></div>
+      </div>
+    </div>
+  <div class="section-label">外部リンク</div>
+  <div class="links"><a class="lbtn" href="https://www.m3career.com/corporate-info/#about-4" target="_blank">🏢 企業サイト</a></div>
+</div></div>
+
+<div class="card" id="k2"><div class="card-inner">
+  <div class="badges"><span class="badge">社長候補</span><span class="badge badge-blue">未上場</span></div>
+  <div class="co-name">株式会社キャンサースキャン</div>
+  <div class="co-url"><a href="https://cancerscan.jp/" target="_blank">https://cancerscan.jp/</a></div>
+  <div class="overview">
+    <h3>Corporate Overview</h3>
+    <table><tr><th>本社住所</th><td>〒141-0031 東京都品川区西五反田1-3-8　五反田PLACE 2F</td></tr><tr><th>上場区分</th><td>未上場</td></tr></table>
+  </div>
+  <div class="highlight">
+    <h3>⭐ morichオススメPoint</h3>
+    
+  </div>
+  <div class="accordion">
+    <div class="acc-header" onclick="toggleAcc(this)">
+      <div class="acc-header-left">
+        <span class="label">企業紹介</span>
+        <div class="acc-preview">「人と社会を健康に」をミッションとして、全国自治体とともに予防医療事業に取り組むヘルスケアベンチャー。2008 年に自治体のがん検診受診率向上を目的に設立され、2014年より特定健診受診率向上事業を開始。</div>
+      </div>
+      <div class="acc-icon">▼</div>
+    </div>
+    <div class="acc-body"><p>「人と社会を健康に」をミッションとして、全国自治体とともに予防医療事業に取り組むヘルスケアベンチャー。2008 年に自治体のがん検診受診率向上を目的に設立され、2014年より特定健診受診率向上事業を開始。設立以来アカデミアと密に連携し多くの共同研究を実施しており、科学的エビデンスを積み重ねることで予防医療分野における高い実績と行動変容ノウハウを持ち、事業の立ち上げからわずか９年で国内約1,700の自治体のうち700を超える自治体で導入され、40％以上のシェアを獲得しています。</p><p>さらに、自治体へのサービス提供を通じ、合計 880 万人の健診及びレセプト（診療報酬明細）データを集積しており、これらのヘルスデータを社会・生活者に還元することで、健康寿命の延伸に資する取組を推進しています。</p><p>2024年1月には、株式会社JMDCへ全株式を譲渡し子会社となりました（取得価額は142億円）。両社のノウハウや強みを活かし、事業規模拡大を加速させていく方針です。今を第二創業期として、組織も同時にスケールできる体制・仕組みを構築・強化していくフェーズにあります。</p><p><strong>代表取締役社長　福吉 潤氏</strong><br>慶應義塾大学総合政策学部を卒業後、P&G Japanに入社。ブランドマネージャーとしてマーケティングやブランドマネジメントを担当する。 2006年、ハーバード大学経営大学院に進学しMBAを取得。同大学研究員として従事したのち、2008年11月に株式会社キャンサースキャンを創業。2021年、慶應義塾大学大学院医学部にて博士号（医学）を取得。</p></div>
+  </div>
+  
+    <div class="job-wrap">
+      <div class="job-header" onclick="toggleJob(this)">
+        <div>
+          <div class="job-title-text">📋 社長候補</div>
+          <div class="job-preview">第二創業期における次世代経営陣として事業成長をリードし、将来的な社長候補として期待されるポジション</div>
+        </div>
+        <div class="job-icon">▼</div>
+      </div>
+      <div class="job-body">
+        <p><strong>【背景】</strong><br>2008年に創業し、2016年から事業拡大の方向に転換して急成長を遂げています。創業当初から外部からの資金調達を行わず、自己資金で事業を展開してきました。5年前はIPOを目指し、現在のCFOを迎え入れました。2024年1月に株式会社JMDCへ全株式を譲渡し子会社となってからは、社長・副社長・CFOの3名の取締役に加え、親会社から2名の役員が加わり、取締役5名体制で運営されています。</p><p><strong>【現状】</strong><br>副社長とCFOの両名が数年後に退任を予定しており、今後の業務を引き継ぎ、事業の舵取りをしていただける取締役候補を探しています。現在の社長は会長のような立場であり、適任者がいれば社長職を譲る意向もあります。CFOの後任は社内で育成中ですが、副社長の業務を引き継ぎ、その後の事業成長にドライブをかけられる人材が求められています。1年間でプロジェクトが進行する事業特性があるため、キャッチアップには1年半から2年が必要とされています。</p>
+        <div class="meta-pills"><span class="pill">📍 東京</span><span class="pill">🏠 ハイブリッド勤務</span><span class="pill">✅ 副業可</span></div>
+      </div>
+    </div>
+  <div class="section-label">外部リンク</div>
+  <div class="links"><a class="lbtn" href="https://cancerscan.jp/" target="_blank">🏢 企業サイト</a><a class="lbtn lbtn-out" href="https://note.com/cancerscan_pr" target="_blank">📝 noteインタビュー</a></div>
+</div></div>
+
+<div class="card" id="k3"><div class="card-inner">
+  <div class="badges"><span class="badge">経営企画管掌幹部候補</span><span class="badge badge-blue">未上場</span></div>
+  <div class="co-name">ドクターズ株式会社</div>
+  <div class="co-url"><a href="https://doctors-inc.jp/" target="_blank">https://doctors-inc.jp/</a></div>
+  <div class="overview">
+    <h3>Corporate Overview</h3>
+    <table><tr><th>本社住所</th><td>〒105-0011 東京都港区芝公園2-3-6 PMO浜松町II 5階</td></tr><tr><th>上場区分</th><td>未上場</td></tr><tr><th>企業評価額</th><td>約400億円</td></tr></table>
+  </div>
+  <div class="highlight">
+    <h3>⭐ morichオススメPoint</h3>
+    <ul><li>IPO準備中</li><li>過去複数名入社実績アリ</li></ul>
+  </div>
+  <div class="accordion">
+    <div class="acc-header" onclick="toggleAcc(this)">
+      <div class="acc-header-left">
+        <span class="label">企業紹介</span>
+        <div class="acc-preview">ドクターズ株式会社は、医療現場の知見とデジタルを掛け合わせ、医療DXの社会実装を推進するプラットフォーム企業です。2021年11月にはシリーズB資金調達を実施し、事業拡大と基盤強化を進めてきました。</div>
+      </div>
+      <div class="acc-icon">▼</div>
+    </div>
+    <div class="acc-body"><p>ドクターズ株式会社は、医療現場の知見とデジタルを掛け合わせ、医療DXの社会実装を推進するプラットフォーム企業です。2021年11月にはシリーズB資金調達を実施し、事業拡大と基盤強化を進めてきました。約40万人の医療従事者、約7.5万施設の医療機関、700名超のエキスパート医師ネットワークを基盤に、事業開発支援「Doctors Hub®」、医療DX・デジタルヘルス総合支援「Doctors Next®」、医療・ヘルスケアAIプラットフォーム「Doctors Station® AI」などを展開。</p><p>国内にとどまらず、さらに直近では米国クリニックを含む実証環境を活用したグローバル展開も進んでおり、日本発で医療DXの社会実装を広げるフェーズに入っています。単なる海外進出ではなく、日本で培った医療DXの仕組みを海外のリアルな医療現場で磨き込み、将来的な横展開につなげていく構想です。加えて、B2B OEM事業、B2Cオンラインサービス、医療機関Roll up＆DX支援、Global Careサービスなど、Healthcare OSを軸に複数事業を展開しています。</p><p>世界のデジタルヘルス市場は今後200兆円規模へ拡大が見込まれ、日本においても少子高齢化で従来産業が縮小傾向にあるなか、デジタルヘルスは成長産業として注目され社会的意義と成長性を兼ね備え、日本の医療構造を本質的に変革していく挑戦に携われます。デジタル技術と医療・ヘルスケアを融合させた「デジタルヘルス」分野で、新たな&quot;医療DXインフラ&quot;を創出している企業です。</p><p><strong>主要実績・提携事例</strong></p><ul><li>東洋経済「すごいベンチャー」ランキングでトップ50に選出</li><li>企業評価額は約400億円、ヘルスケアベンチャーの中で国内トップクラス</li><li>LA SUITE社：「うめきた温泉 蓮」へのOEM提供。温浴×医療DXによるウェルネス体験を実現。</li><li>ビーウィズ（パソナグループ）：「SOKUSAI Lab」を共同開発。企業の健康経営を支援（2025年正式リリース）。</li><li>NTTビジネスソリューションズ：「オンラインSASクリニック」を共同開発。SAS診療をオンライン完結（2024年提供開始）。</li><li>業界大手との資本業務提携：スズケン（医療機関DX支援）／みずほFG（医療DXファイナンス）／キヤノンITS（医療画像共同開発）</li></ul><p><strong>代表取締役 兼 CEO　柳川 貴雄氏</strong><br>2007年信州大学医学部医学科卒業。2009年信州大学付属病院にて初期研修過程終了。脳神経外科専門医・指導医資格取得。これまでに2500例以上の脳外科手術を執刀。2016年に一般社団法人IoMT学会を立ち上げ、理事就任。IoTと医療の連携の普及に努める。2018年7月からは、株式会社ZAIKENを創業。超小型遠隔連続心電図デバイスを用いた遠隔IoT連続心電図検査サービス「医心電診」を運営。2019年10月にドクターズ株式会社の事業を開始し、400名以上の専門医を中心とした日本初のシステムである、医療専門家クラウドソーシング事業を立ち上げ、超少子高齢化新時代に向けた医療のIT/IoT化を推し進めている。</p></div>
+  </div>
+  
+    <div class="job-wrap">
+      <div class="job-header" onclick="toggleJob(this)">
+        <div>
+          <div class="job-title-text">📋 経営企画管掌幹部候補（事業開発/M&A・IPO）</div>
+          <div class="job-preview">社長直下で全社戦略を策定し、M&AやIPO準備を通じて医療DXプラットフォームの急成長を牽引</div>
+        </div>
+        <div class="job-icon">▼</div>
+      </div>
+      <div class="job-body">
+        <p>ドクターズは、約40万人の医療従事者と約7.5万施設の医療機関、さらに大学教授クラスを含む約700名の高度専門医ネットワークを有する、日本有数の医療ネットワークを基盤とした企業です。このネットワークを活かし、医療現場の知見と企業の技術・サービスをつなぐことで、医療DX推進や医療機関支援など、医療業界の課題解決に取り組んでいます。ドクターズは、ビジネスとメディカルの橋渡しを通じて、医療業界の持続的な発展とイノベーションの創出を支援しています。</p><p><strong>【業務概要】</strong></p><ul><li>経営戦略の立案および実施</li><li>中長期計画の策定・進捗管理</li><li>予算編成・KPI設定・モニタリング</li><li>M&A戦略の策定、案件ソーシング、デューデリジェンス、PMI対応</li><li>医療機関および関連企業の買収・資本提携に関するリサーチ、初期検討</li><li>買収後の子会社管理・業績モニタリングのサポート</li><li>PMI（統合後の事業推進）における企画・実行支援</li></ul><p><strong>【事業概要】</strong></p><ul><li><strong>DoctorsHub™『作る』</strong><br>企業と医療専門家が協力し、医療・デジタルヘルスサービスの開発を支援する事業部です。単に企業視点でサービスを作るのではなく、700名の専門医と連携し、実際の医療現場の知見を活かしながら開発を進めることが特徴です。</li><li><strong>Doctors Next® 『拡げる』</strong><br>医療・デジタルヘルスケアサービスを医療現場へ浸透させるための流通・拡販支援を行う事業部です。多くの企業が新しいサービスを開発していますが、それらが医療機関で実際に導入・活用されなければ意味がありません。そこで、ドクターズネクストが医療現場への流通ルートの構築と拡販支援を担います。</li><li><strong>Doctors Station®『届ける』</strong><br>企業がB2C向けのヘルスケアサービスを構築するためのプラットフォームです。チーム医療で患者を総合的に支援する、オンライン医療支援サービスが構築可能なフルパッケージを提供します。総合病院さながらの初期相談から問診、トリアージ、診療（オンライン診療・対面診療）への流れを全てオンラインで実現。</li></ul><p><strong>【CEO柳川貴雄からのメッセージ】</strong><br>私は医師であり起業家として、デジタルの力を活用し、どこにいても安心して健康に生きられる社会を実現することを目指しています。しかし、私たちベンチャー企業一社でできることには限りがあり、この改革には医療現場の先生方の力と、民間企業の卓越した技術やネットワークが不可欠です。私たちドクターズは、医療と民間企業の間に立ち、共にエコシステムを築きながら、より良い医療環境を創り上げることを目指しています。このビジョンのもと、医療の未来を共に創る仲間を求めています。ぜひ一緒に、医療の新しい未来を築いていきましょう。</p><p><strong>【応募資格】</strong><br><span class='tag tag-must'>MUST</span> 事業会社またはコンサルティングファームでの経営企画、事業企画、戦略立案の経験（3年以上）<br><span class='tag tag-must'>MUST</span> 財務・会計知識（PL/BS/CFの理解）<br><span class='tag tag-must'>MUST</span> 市場調査や競合分析をもとにした戦略提案経験<br><span class='tag tag-must'>MUST</span> 社内外のステークホルダーを巻き込むプロジェクト推進力<br><span class='tag tag-must'>MUST</span> グループ子会社の管理経験（業績管理、ガバナンス、経営支援など）<br><span class='tag tag-want'>WANT</span> 新規事業立ち上げの実務経験<br><span class='tag tag-want'>WANT</span> M&A案件の実行経験（戦略策定～PMIまで）<br><span class='tag tag-want'>WANT</span> 医療・ヘルスケア業界での業務経験<br><span class='tag tag-want'>WANT</span> 英語によるビジネスコミュニケーション能力</p><p><strong>【求める人物像】</strong></p><ul><li>社長の右腕として、自ら考え行動し、スピード感を持って実行できる方</li><li>未経験領域でも柔軟にキャッチアップし、成果を出せる方</li><li>数値に基づいた戦略思考と論理的な課題解決能力を持つ方</li><li>高いコミュニケーション能力で周囲を巻き込める方</li><li>成長フェーズのスタートアップで裁量を持って働きたい方</li></ul>
+        <div class="meta-pills"><span class="pill">📍 東京</span><span class="pill">🏠 ハイブリッド勤務</span><span class="pill">❌ 副業不可</span></div>
+      </div>
+    </div>
+  <div class="section-label">外部リンク</div>
+  <div class="links"><a class="lbtn" href="https://doctors-inc.jp/" target="_blank">🏢 企業サイト</a></div>
+</div></div>
+
+<div class="card" id="k4"><div class="card-inner">
+  <div class="badges"><span class="badge">事業開発</span><span class="badge badge-blue">N-1</span></div>
+  <div class="co-name">カイテク株式会社</div>
+  <div class="co-url"><a href="https://corp.caitech.co.jp/" target="_blank">https://corp.caitech.co.jp/</a></div>
+  <div class="overview">
+    <h3>Corporate Overview</h3>
+    <table><tr><th>本社住所</th><td>〒160-0022 東京都新宿区新宿1丁目23番1号 THE PORTAL 新宿御苑 2F</td></tr><tr><th>設立</th><td>2018年</td></tr><tr><th>従業員数</th><td>約52名（役員含む）</td></tr><tr><th>上場区分</th><td>未上場</td></tr><tr><th>IPO準備</th><td>N-1期</td></tr></table>
+  </div>
+  <div class="highlight">
+    <h3>⭐ morichオススメPoint</h3>
+    <ul><li>IPO準備フェーズ：N-1期</li><li>社長リレーション</li><li>競合を4倍差でリードする、現場起点の強固な事業優位性</li><li>少数精鋭で高成長を実現する、圧倒的な生産性と利益体質</li><li>5年10年をかけて向き合える、社会的意義の大きなバーティカル領域</li></ul>
+  </div>
+  <div class="accordion">
+    <div class="acc-header" onclick="toggleAcc(this)">
+      <div class="acc-header-left">
+        <span class="label">企業紹介</span>
+        <div class="acc-preview">「2050年に世界一幸せな超高齢社会をつくる」というビジョンのもと、介護・医療領域の人材不足解消に挑む2018年設立のHRテック企業で、介護・医療・看護領域に特化した単発・スポットワークマッチングサービス「カイテク」を展開しています。</div>
+      </div>
+      <div class="acc-icon">▼</div>
+    </div>
+    <div class="acc-body"><p>「2050年に世界一幸せな超高齢社会をつくる」というビジョンのもと、介護・医療領域の人材不足解消に挑む2018年設立のHRテック企業で、介護・医療・看護領域に特化した単発・スポットワークマッチングサービス「カイテク」を展開しています。慢性的な人材不足という社会構造課題に対し、有資格者限定という独自モデルでアプローチしている点や勤務後5分以内の即時ペイメントや、足りないシフト枠をスポットワークと連携する仕組みなど、現場起点のプロダクト開発を進め、導入事業所は約2.1万、アプリDLは約118万人まで拡大。</p><p>業界内では圧倒的なシェアNo.1（タイミー社の約4倍）のインフラとして独走状態をキープ、そして直近3期連続黒字、営業利益率10％超と、成長性と収益性を両立している点も特徴でIPOを目指しています。今後は介護・医療周辺領域への展開や新規事業、M&Aも視野に入れ、日本で成功モデルを築いた先の海外展開も見据えています。エリア展開も進行中で、介護人材市場の流動化を促進するインフラとしてのポジションを築きつつあります。</p><p>デロイトトーマツグループが2026年1月に発表したテクノロジー・メディア・通信業界における成長率のランキング「Technology Fast 50 2025 Japan」において、過去3決算期の収益（売上高）に基づく成長率1,616％を記録し、見事１位を受賞！</p><p><strong>代表取締役社長　武藤 高史氏</strong><br>1988年生まれ。立命館大学大学院情報理工学研究科を修了後、新卒で富士ゼロックス株式会社に入社後、エムスリー株式会社に参画。祖父母の介護をきっかけに、日本が直面する介護・医療人材不足という社会課題の解決を志し、2018年に同社を創業。外部では講演や書籍寄稿なども行い、介護・医療分野の新しい働き方を提案する起業家としても注目されています。</p><p>2018年2月9日の「福祉の日」に創業し、現在従業員数は役員含め約52名。2050年に「世界一幸せな超高齢社会」を目指し、「歳を重ねるほど、笑顔の人が増える社会」の実現、日本が世界のロールモデルになるための「立役者」にカイテクの全従業員で取り組んでいらっしゃいます。直近3期連続で黒字化、営業利益率は10％超と黒字・利益率も確保している成長著しい企業です！</p></div>
+  </div>
+  
+    <div class="job-wrap">
+      <div class="job-header" onclick="toggleJob(this)">
+        <div>
+          <div class="job-title-text">📋 事業開発</div>
+          <div class="job-preview">IPO準備中のHRテック企業で第二・第三の収益柱を創出する新規事業開発・M&Aを推進</div>
+        </div>
+        <div class="job-icon">▼</div>
+      </div>
+      <div class="job-body">
+        <p><strong>■募集背景</strong><br>＜事業ロードマップと今後の展開＞<br>「スポットワーク」から、介護・医療・福祉の総合インフラへ。当社は現在、介護・医療現場の人材不足を解消する「スポットワーク（HR事業）」を起点に、業界のあり方を変える多角的な事業展開を加速させています。</p><p><strong>現在のフェーズ：圧倒的成長と領域拡大</strong><br>現在、主軸の「スポットワーク事業」および現場の生産性を高める「SaaS（HR Tech）事業」が急速にグロースしています。介護職・看護師・薬剤師の支援に加え、今後は医師や医療事務領域への拡大、AIを活用した勤怠・シフト管理の高度化を推進中です。</p><p><strong>＜ 今後の展望＞</strong><br>業界の課題を垂直・水平に解決する<br>単なる人材マッチングに留まらず、中長期的に以下の事業群を立ち上げ、介護・医療に関わるすべてのステークホルダーを支えるプラットフォームを目指します。</p><p><strong>■ポジションの役割</strong><br>現在は「介護×HR」のイメージが強いかもしれませんが、今後の構想は「病院、障害福祉、薬局、クリニック」といった医療・福祉全般、そして「金融、M&A、ロボティクス」まで広がっています。「スポットワーク」という強力な接点を武器に、次々と新しい事業が生まれるエキサイティングな環境で、業界のDXと未来を一緒に創っていきませんか？</p><p><strong>■業務内容</strong></p><ul><li><strong>新規事業・経営戦略</strong><br>新規事業・新部門・新プロジェクトのインキュベーション（立ち上げ）業務<br>全社中長期経営戦略の立案、事業計画の策定、および経営数値のモニタリング<br>既存事業と新規事業の部門横断的なシナジー創出・推進</li><li><strong>M&A関連</strong><br>M&A戦略の立案、ターゲット選定、デューデリジェンス、交渉、実行<br>M&A後のPMI（Post-Merger Integration）の計画策定および実行の最高責任<br>既存事業とM&A先との部門横断的なシナジー創出</li></ul><p><strong>■ポジションの魅力</strong></p><ul><li><strong>【圧倒的な市場ニーズとプロダクトの強さ】</strong><br>「Technology Fast 50 2025 Japan」日本1位を記録。人手不足が深刻な介護業界で「不可欠なサービス」を提供しているため、M&Aや事業提携の交渉においても強力な追い風があります。</li><li><strong>【裁量と責任 — 経営の中核】</strong><br>代表直下で全社を動かすダイナミズムを日々実感。</li><li><strong>【当社の未来を描く — 新規ポジション】</strong><br>会社の成長を担う全く新しいポジション。2040年に向けた超高齢社会という社会課題に対し、事業を通じてダイレクトにインパクトを与えられます</li><li><strong>【キャリアの代表となる非連続成長の実現】</strong><br>「自らの手で会社を成長へと導いた」という具体的かつ強烈な成功体験をキャリアに刻めます。あなたの力が会社を動かす最大のインパクトを実感できるポジションです。</li></ul><p><strong>【応募資格】</strong><br><span class='tag tag-must'>MUST</span> 新規事業開発またはM&Aの経験<br><span class='tag tag-must'>MUST</span> オーナー経営者と対等に議論し、ビジョンを具体的な事業計画に落とし込み、実行した実績<br><span class='tag tag-must'>MUST</span> 50億～500億、あるいはそれ以上の規模への「グロースフェーズ」を中核として牽引した実績<br><span class='tag tag-must'>MUST</span> M&Aの実行(ソーシングからクロージングまで)およびPMI(統合作業)のハンズオン経験<br><span class='tag tag-want'>WANT</span> 戦略コンサルティングファームにおける戦略立案、またはデューデリジェンスの経験<br><span class='tag tag-want'>WANT</span> PEファンドやベンチャーキャピタルでの投資およびバリューアップの経験<br><span class='tag tag-want'>WANT</span> 財務(ファイナンス)および法務(リーガル)に関する高度な知識</p><p><strong>【求める人物像】</strong></p><ul><li>社会課題の構造を理解し、実現まで粘り強く伴走できる方</li><li>社内外のステークホルダーを巻き込み、変革を推進できる高い影響力とコミュニケーション能力を持つ方</li><li>スタートアップ環境においてスピード感と柔軟性をもって行動できる方</li><li>高い倫理観と、数字に対する強いコミットメントを両立できる方</li></ul>
+        <div class="meta-pills"><span class="pill">📍 東京</span><span class="pill">🏠 ハイブリッド勤務</span><span class="pill">✅ 副業可</span></div>
+      </div>
+    </div>
+  <div class="section-label">外部リンク</div>
+  <div class="links"><a class="lbtn" href="https://corp.caitech.co.jp/" target="_blank">🏢 企業サイト</a></div>
+</div></div>
+</main>
+<footer>
+  <p>本資料はmorichが橋本宜明 様のためにご用意した個人情報を含む機密資料です。無断転用・転載はご遠慮ください。</p>
+  <p style="margin-top:6px;">© 株式会社morich</p>
+</footer>
+<script>
+  function toggleAcc(header) {
+    const body = header.nextElementSibling;
+    header.classList.toggle('open');
+    body.classList.toggle('open');
+  }
+  function toggleJob(header) {
+    const body = header.nextElementSibling;
+    header.classList.toggle('open');
+    body.classList.toggle('open');
+  }
+</script>
+</body>
+</html>
